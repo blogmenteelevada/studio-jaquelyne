@@ -12,10 +12,10 @@
         :root {
             --bg: #0F0F0F;
             --card-bg: #1A1A1A;
-            /* TERRACOTA / LARANJA QUEIMADO (Identidade Jaquelyne) */
+            /* TERRACOTA / LARANJA QUEIMADO */
             --brand: #D65A31; 
-            --brand-light: #FF8E61;
-            --brand-gradient: linear-gradient(135deg, #D65A31 0%, #FF8E61 100%);
+            --brand-light: #FF833A;
+            --brand-gradient: linear-gradient(135deg, #D65A31 0%, #FF833A 100%);
             --text: #F5F5F5;
             --muted: #888;
         }
@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HERO TRAVADO (Igual ao da Eduarda) --- */
+        /* --- HERO --- */
         .hero {
             position: relative;
             width: 100%;
@@ -45,66 +45,78 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('hero_bg.jpg'); 
             background-size: cover; 
-            background-position: center;
-            filter: brightness(0.3); 
+            background-position: center top; 
+            filter: brightness(0.35); /* Escuro para destacar o texto */
             z-index: 1;
         }
 
-        /* 2. TEXTO (TRAVADO NO TOPO ESQUERDO) */
+        /* 2. TEXTO (MAIOR E MAIS BAIXO) */
         .hero-content {
             position: absolute;
-            top: 10%; 
-            left: 20px; 
-            width: 65%; 
+            top: 25%; /* Desci para 25% (estava 10%) */
+            left: 25px; 
+            width: 70%; 
             z-index: 10; 
             text-align: left;
         }
 
         .hero-subtitle {
             color: var(--brand);
-            font-size: 0.7rem;
+            font-size: 0.9rem; /* Aumentei */
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             font-weight: 800;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             display: block;
             text-shadow: 2px 2px 4px #000;
         }
 
         .hero-title {
             font-family: 'Italiana', serif;
-            font-size: 3.5rem; /* Ajustado para nome maior */
+            font-size: 4.8rem; /* Aumentei bastante */
             line-height: 0.9;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-shadow: 2px 2px 10px #000;
         }
         
         .hero-title span { color: var(--brand); font-style: italic; }
 
-        /* BOTÕES DE INFO NO HERO (NOVO) */
+        /* BADGES */
+        .badges-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            background: rgba(20, 20, 20, 0.85);
+            border-left: 3px solid var(--brand);
+            color: #eee;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(5px);
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        .badge-icon { color: var(--brand); }
+
+        /* BOTÕES EXTRAS */
         .hero-actions {
-            display: flex; gap: 10px; margin-top: 15px;
+            display: flex; gap: 10px;
         }
         .btn-mini {
             background: rgba(255,255,255,0.1); border: 1px solid var(--brand);
-            color: #fff; padding: 8px 12px; border-radius: 20px; font-size: 0.7rem;
-            cursor: pointer; backdrop-filter: blur(5px);
+            color: #fff; padding: 12px 20px; border-radius: 30px; font-size: 0.75rem;
+            cursor: pointer; backdrop-filter: blur(5px); text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
         }
+        .btn-mini:hover { background: rgba(214, 90, 49, 0.2); }
 
-        /* 3. PESSOA (TRAVADA EMBAIXO E NA DIREITA) */
-        .hero-person {
-            position: absolute;
-            bottom: 0;
-            right: -15%; 
-            height: 70%; /* Ajuste fino para a foto dela */
-            width: auto;
-            z-index: 5;
-            filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5));
-            pointer-events: none;
-        }
-
-        /* 4. SOMBRA SÓ NA BASE */
+        /* FADE NA BASE */
         .hero-fade {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 25%;
             background: linear-gradient(to top, var(--bg), transparent);
@@ -143,41 +155,45 @@
             border-radius: 15px; display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; transition: 0.2s;
         }
-        .service-card.selected { border-color: var(--brand); background: rgba(214, 90, 49, 0.15); }
-        .s-price { font-family: 'Italiana', serif; font-size: 1.4rem; font-weight: 700; color: var(--brand); }
-        .s-info h3 { font-size: 1rem; font-weight: 600; color: #FFF; margin-bottom: 4px; }
+        .service-card.selected { border-color: var(--brand); background: rgba(230, 81, 0, 0.15); }
+        
+        .s-info h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
         .s-info p { font-size: 0.75rem; color: var(--muted); }
+        .s-price { font-family: 'Italiana', serif; font-size: 1.4rem; font-weight: 700; color: var(--brand); }
 
-        /* SELEÇÃO DE FORMATO (NOVO) */
-        .shape-selector { display: none; margin-top: 20px; }
-        .shape-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        /* FORMATO (AGORA PADRÃO PARA TODOS) */
+        .shape-selector { display: none; margin-top: 25px; animation: fadeIn 0.5s; }
+        .shape-label { text-align: center; color: var(--brand); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 10px; display: block; font-weight: 700; }
+        .shape-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .shape-card {
-            background: var(--card-bg); border: 1px solid #333; padding: 10px;
+            background: var(--card-bg); border: 1px solid #333; padding: 15px;
             border-radius: 10px; text-align: center; cursor: pointer; color: #888; font-size: 0.8rem;
+            transition: 0.2s;
         }
-        .shape-card.selected { border-color: var(--brand); color: var(--brand); background: rgba(214, 90, 49, 0.1); }
+        .shape-card.selected { border-color: var(--brand); color: #fff; background: rgba(230, 81, 0, 0.1); }
 
         .form-area { margin-top: 30px; background: #121212; padding: 25px; border-radius: 20px; border: 1px solid #222; }
         label { color: var(--muted); font-size: 0.75rem; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-        
-        input, select { width: 100%; background: #080808; border: 1px solid #333; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 1rem; }
+        input, select { width: 100%; background: #080808; border: 1px solid #333; color: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 1rem; }
         
         .btn-submit {
             width: 100%; padding: 20px; border-radius: 50px; border: none;
             background: var(--brand-gradient); color: #FFF; font-weight: 800; 
             text-transform: uppercase; cursor: pointer; margin-top: 10px;
+            box-shadow: 0 5px 20px rgba(230, 81, 0, 0.3); transition: transform 0.2s;
         }
+        .btn-submit:active { transform: scale(0.98); }
 
         #timeSummary {
-            background: rgba(214, 90, 49, 0.1); border: 1px solid var(--brand);
+            background: rgba(230, 81, 0, 0.1); border: 1px solid var(--brand);
             padding: 15px; border-radius: 10px; margin-bottom: 20px;
-            text-align: center; color: var(--brand); display: none; line-height: 1.5;
+            text-align: center; color: var(--brand-light); display: none; line-height: 1.5;
         }
 
-        /* MODAIS GERAIS */
+        /* MODAIS */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); z-index: 2000;
+            background: rgba(0, 0, 0, 0.95); z-index: 2000;
             display: none; justify-content: center; align-items: center;
             backdrop-filter: blur(5px);
         }
@@ -197,10 +213,10 @@
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes appear { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (min-width: 768px) {
-            .hero-person { right: 20%; height: 85%; }
-            .hero-content { top: 20%; left: 15%; width: 40%; }
+            .hero-content { max-width: 50%; padding-left: 10%; }
         }
     </style>
 </head>
@@ -209,24 +225,24 @@
     <!-- HERO FIXO -->
     <header class="hero">
         <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
         
         <div class="hero-content">
             <span class="hero-subtitle">Nail Designer Premium</span>
             <h1 class="hero-title">Jaquelyne<br><span>Bianca</span></h1>
             
-            <div style="color: #ccc; font-size: 0.8rem; margin-bottom: 15px;">
-                📍 Serraria - São José<br>
-                ✨ Especialista em Fibra
+            <div class="badges-container">
+                <div class="badge"><span class="badge-icon">📍</span> Serraria - São José</div>
+                <div class="badge"><span class="badge-icon">✨</span> 3+ Anos de Experiência</div>
+                <div class="badge"><span class="badge-icon">🕒</span> Seg a Sex: 08h às 20h</div> 
             </div>
 
-            <!-- NOVOS BOTÕES DE INFO -->
+            <!-- BOTÕES EXTRAS (DO PDF) -->
             <div class="hero-actions">
                 <div class="btn-mini" onclick="openModal('modalBio')">QUEM SOU EU</div>
                 <div class="btn-mini" onclick="openModal('modalDuvida')">GEL X BLINDAGEM</div>
             </div>
         </div>
-
-        <img src="hero_person.png" alt="Jaquelyne" class="hero-person">
         <div class="hero-fade"></div>
     </header>
 
@@ -241,6 +257,7 @@
             <div class="carousel-item"><img src="unha3.jpg"></div>
             <div class="carousel-item"><img src="unha4.jpg"></div>
             <div class="carousel-item"><img src="unha5.jpg"></div>
+            <!-- REPETIÇÃO -->
             <div class="carousel-item"><img src="unha1.jpg"></div>
             <div class="carousel-item"><img src="unha2.jpg"></div>
             <div class="carousel-item"><img src="unha3.jpg"></div>
@@ -253,14 +270,14 @@
     <section class="booking-section">
         <div class="section-header">
             <h2>Agendamento</h2>
-            <p style="color:#888; font-size:0.8rem">1. Selecione o serviço</p>
+            <p style="color:#888; font-size:0.8rem">Consulte valores e disponibilidade</p>
         </div>
         
         <div id="serviceList" class="service-list"></div>
 
-        <!-- SELEÇÃO DE FORMATO (Oculto inicialmente) -->
+        <!-- SELEÇÃO DE FORMATO (Agora aparece sempre) -->
         <div id="shapeSection" class="shape-selector">
-            <label style="text-align: center; color: var(--brand);">QUAL FORMATO PREFERE?</label>
+            <label class="shape-label">QUAL FORMATO PREFERE?</label>
             <div class="shape-grid">
                 <div class="shape-card" onclick="selectShape(this, 'Quadrada')">Quadrada</div>
                 <div class="shape-card" onclick="selectShape(this, 'Almond')">Almond</div>
@@ -271,17 +288,17 @@
 
         <div class="form-area">
             <div>
-                <label>Seu Nome</label>
+                <label>Como podemos te chamar?</label>
                 <input type="text" id="cName" placeholder="Digite seu nome">
             </div>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <div>
-                    <label>Data</label>
+                    <label>Qual dia?</label>
                     <input type="date" id="cDate" onchange="updateTimeSlots()">
                 </div>
                 <div>
-                    <label>Horário</label>
+                    <label>Qual horário?</label>
                     <select id="cTime" onchange="calcTime()">
                         <option value="">Selecione...</option>
                     </select>
@@ -326,7 +343,7 @@
         </div>
     </div>
 
-    <!-- MODAL 3: GARANTIA (AVISO) -->
+    <!-- MODAL 3: AVISO TAXA -->
     <div id="modalConfirm" class="modal-overlay">
         <div class="modal-box">
             <h3 class="modal-title">✨ Confirmação</h3>
@@ -378,14 +395,9 @@
             el.classList.add('selected');
             selServ = services.find(s => s.id === id);
             
-            // Lógica para mostrar Formatos apenas se for alongamento/manutenção
+            // AGORA SEMPRE MOSTRA O FORMATO
             const shapeDiv = document.getElementById('shapeSection');
-            if(selServ.name.includes("Fibra") || selServ.name.includes("Manutenção")) {
-                shapeDiv.style.display = 'block';
-            } else {
-                shapeDiv.style.display = 'none';
-                selShape = null; // Reseta se trocar de serviço
-            }
+            shapeDiv.style.display = 'block'; 
 
             updateTimeSlots(); 
             calcTime();
@@ -449,8 +461,8 @@
             
             if(!selServ || !n || !d || !t) { alert('Preencha todas as informações! ✨'); return; }
             
-            // Valida se escolheu formato quando necessário
-            if(document.getElementById('shapeSection').style.display === 'block' && !selShape) {
+            // VALIDA SE O FORMATO FOI ESCOLHIDO (OBRIGATÓRIO AGORA)
+            if(!selShape) {
                 alert('Por favor, escolha um formato de unha! 💅'); return;
             }
 
@@ -474,7 +486,7 @@
 
             let msg = `Olá Jaquelyne! 🧡\nMe chamo *${n}*.\n\nGostaria de agendar:\n✨ *${selServ.name}* (R$ ${selServ.price})\n`;
             
-            if(selShape) msg += `💅 Formato: *${selShape}*\n`;
+            msg += `💅 Formato: *${selShape}*\n`;
             
             msg += `📅 Data: *${dStr}*\n⏰ Horário: *${t}* (Até aprox. ${endStr})\n\nEstou ciente da taxa. Tem vaga?`;
             
