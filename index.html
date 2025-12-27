@@ -5,391 +5,482 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Studio Jaquelyne Bianca</title>
     
-    <!-- Fontes do PDF (Estilo Manuscrito e Serifado) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CONFIGURAÇÕES GERAIS --- */
         :root {
-            --marble-bg: #f9f9f9;
-            --dark-grey: #4A4A4A; /* Cor das caixas do PDF */
-            --gold: #C5A059; /* Dourado do círculo */
-            --text-dark: #333;
-            --text-light: #fff;
+            --bg: #0F0F0F;
+            --card-bg: #1A1A1A;
+            /* TERRACOTA / LARANJA QUEIMADO (Identidade Jaquelyne) */
+            --brand: #D65A31; 
+            --brand-light: #FF8E61;
+            --brand-gradient: linear-gradient(135deg, #D65A31 0%, #FF8E61 100%);
+            --text: #F5F5F5;
+            --muted: #888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body { 
-            background-color: var(--marble-bg);
-            /* Simulando textura de mármore via CSS */
-            background-image: url('https://www.transparenttextures.com/patterns/white-marble.png'); 
-            color: var(--text-dark); 
-            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Manrope', sans-serif; 
             overflow-x: hidden;
         }
 
-        /* --- HERO SECTION (IDENTIDADE VISUAL) --- */
-        .header {
-            text-align: center;
-            padding: 40px 20px 20px;
+        /* --- HERO TRAVADO (Igual ao da Eduarda) --- */
+        .hero {
             position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background-color: #000;
+            display: block; 
         }
 
-        /* Elementos decorativos (Ondas cinzas do PDF) */
-        .wave-top {
-            position: absolute; top: 0; left: 0; width: 100%; height: 150px;
-            background: var(--dark-grey);
-            border-bottom-right-radius: 100% 50%;
-            z-index: -1;
+        /* 1. FUNDO */
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('hero_bg.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            filter: brightness(0.3); 
+            z-index: 1;
         }
 
-        .profile-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 15px;
+        /* 2. TEXTO (TRAVADO NO TOPO ESQUERDO) */
+        .hero-content {
+            position: absolute;
+            top: 10%; 
+            left: 20px; 
+            width: 65%; 
+            z-index: 10; 
+            text-align: left;
         }
 
-        .profile-img {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold); /* Borda Dourada do PDF */
-            padding: 3px;
-            background: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .hero-subtitle {
+            color: var(--brand);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            display: block;
+            text-shadow: 2px 2px 4px #000;
         }
 
-        .brand-name {
-            font-family: 'Great Vibes', cursive; /* Fonte manuscrita do PDF */
-            font-size: 3.5rem;
-            color: #000;
-            line-height: 1;
+        .hero-title {
+            font-family: 'Italiana', serif;
+            font-size: 3.5rem; /* Ajustado para nome maior */
+            line-height: 0.9;
+            color: #fff;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 10px #000;
+        }
+        
+        .hero-title span { color: var(--brand); font-style: italic; }
+
+        /* BOTÕES DE INFO NO HERO (NOVO) */
+        .hero-actions {
+            display: flex; gap: 10px; margin-top: 15px;
+        }
+        .btn-mini {
+            background: rgba(255,255,255,0.1); border: 1px solid var(--brand);
+            color: #fff; padding: 8px 12px; border-radius: 20px; font-size: 0.7rem;
+            cursor: pointer; backdrop-filter: blur(5px);
         }
 
-        /* --- BOTÕES DE INFORMAÇÃO (BIO E DÚVIDAS) --- */
-        .info-actions {
-            display: flex; gap: 10px; justify-content: center; margin-bottom: 30px;
+        /* 3. PESSOA (TRAVADA EMBAIXO E NA DIREITA) */
+        .hero-person {
+            position: absolute;
+            bottom: 0;
+            right: -15%; 
+            height: 70%; /* Ajuste fino para a foto dela */
+            width: auto;
+            z-index: 5;
+            filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5));
+            pointer-events: none;
         }
 
-        .btn-info {
-            background: white; border: 1px solid var(--gold);
-            padding: 10px 20px; border-radius: 30px;
-            font-size: 0.8rem; color: var(--dark-grey); font-weight: 600;
-            display: flex; align-items: center; gap: 5px; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.2s;
+        /* 4. SOMBRA SÓ NA BASE */
+        .hero-fade {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 25%;
+            background: linear-gradient(to top, var(--bg), transparent);
+            z-index: 6;
         }
-        .btn-info:active { transform: scale(0.95); }
+
+        /* --- CARROSSEL --- */
+        .vitrine-section {
+            padding: 40px 0;
+            background: var(--bg);
+            border-bottom: 1px solid #222;
+            overflow: hidden;
+            position: relative; z-index: 7;
+        }
+        
+        .section-header { text-align: center; margin-bottom: 20px; }
+        .section-header h2 { font-family: 'Italiana', serif; font-size: 2rem; color: var(--brand); }
+
+        .carousel-track {
+            display: flex; gap: 15px; width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+        .carousel-item {
+            width: 160px; height: 220px; border-radius: 12px; overflow: hidden;
+            border: 1px solid #333; flex-shrink: 0;
+        }
+        .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- AGENDAMENTO --- */
-        .container { max-width: 600px; margin: 0 auto; padding: 0 20px 80px; }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            text-align: center; font-size: 1.5rem;
-            margin-bottom: 20px; color: var(--dark-grey);
-            border-bottom: 1px solid var(--gold); display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        /* LISTA DE SERVIÇOS */
+        .booking-section { padding: 40px 20px; max-width: 600px; margin: 0 auto; }
+        
+        .service-list { display: flex; flex-direction: column; gap: 12px; }
+        
         .service-card {
-            background: white; border-radius: 12px; padding: 15px;
-            margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;
-            border-left: 4px solid transparent; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            background: var(--card-bg); border: 1px solid #333; padding: 18px;
+            border-radius: 15px; display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; transition: 0.2s;
         }
-        .service-card.selected { border-left-color: var(--gold); background: #fffcf5; border: 1px solid var(--gold); }
-        .s-name { font-weight: 600; font-size: 1rem; color: var(--dark-grey); }
-        .s-price { font-weight: 700; color: var(--gold); font-size: 1.1rem; }
+        .service-card.selected { border-color: var(--brand); background: rgba(214, 90, 49, 0.15); }
+        .s-price { font-family: 'Italiana', serif; font-size: 1.4rem; font-weight: 700; color: var(--brand); }
+        .s-info h3 { font-size: 1rem; font-weight: 600; color: #FFF; margin-bottom: 4px; }
+        .s-info p { font-size: 0.75rem; color: var(--muted); }
 
-        /* SELEÇÃO DE FORMATO (PÁGINA 3 DO PDF) */
-        .shapes-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;
-            display: none; /* Aparece só depois de selecionar serviço */
-            animation: fadeIn 0.5s;
-        }
-        
+        /* SELEÇÃO DE FORMATO (NOVO) */
+        .shape-selector { display: none; margin-top: 20px; }
+        .shape-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
         .shape-card {
-            background: white; padding: 10px; border-radius: 10px; text-align: center;
-            border: 1px solid #eee; cursor: pointer;
+            background: var(--card-bg); border: 1px solid #333; padding: 10px;
+            border-radius: 10px; text-align: center; cursor: pointer; color: #888; font-size: 0.8rem;
         }
-        .shape-card.selected { background: var(--dark-grey); color: white; border-color: var(--dark-grey); }
-        .shape-card img { width: 40px; height: 40px; margin-bottom: 5px; border-radius: 50%; border: 1px solid var(--gold); }
-        .shape-name { font-size: 0.8rem; font-weight: 600; display: block; }
+        .shape-card.selected { border-color: var(--brand); color: var(--brand); background: rgba(214, 90, 49, 0.1); }
 
-        /* FORMULÁRIO */
-        .form-section { margin-top: 30px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .form-area { margin-top: 30px; background: #121212; padding: 25px; border-radius: 20px; border: 1px solid #222; }
+        label { color: var(--muted); font-size: 0.75rem; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
         
-        input, select {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
-            margin-bottom: 15px; font-family: 'Montserrat', sans-serif;
-        }
+        input, select { width: 100%; background: #080808; border: 1px solid #333; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 1rem; }
         
         .btn-submit {
-            width: 100%; padding: 18px; border: none; border-radius: 50px;
-            background: var(--dark-grey); color: white; font-size: 1rem;
-            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(74, 74, 74, 0.4);
+            width: 100%; padding: 20px; border-radius: 50px; border: none;
+            background: var(--brand-gradient); color: #FFF; font-weight: 800; 
+            text-transform: uppercase; cursor: pointer; margin-top: 10px;
         }
 
-        /* --- MODAIS (POP-UPS) --- */
+        #timeSummary {
+            background: rgba(214, 90, 49, 0.1); border: 1px solid var(--brand);
+            padding: 15px; border-radius: 10px; margin-bottom: 20px;
+            text-align: center; color: var(--brand); display: none; line-height: 1.5;
+        }
+
+        /* MODAIS GERAIS */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 2000;
+            background: rgba(0, 0, 0, 0.9); z-index: 2000;
             display: none; justify-content: center; align-items: center;
             backdrop-filter: blur(5px);
         }
-
-        .modal-content {
-            background: white; width: 90%; max-width: 400px;
-            border-radius: 20px; padding: 30px 20px; text-align: center;
-            position: relative; animation: slideUp 0.3s;
-            border: 1px solid var(--gold);
+        .modal-box {
+            background: #121212; border: 1px solid var(--brand); padding: 30px 25px;
+            width: 90%; max-width: 400px; border-radius: 20px; text-align: center;
+            animation: appear 0.3s ease-out; position: relative;
         }
+        .modal-title { color: var(--brand); font-family: 'Italiana', serif; font-size: 1.8rem; margin-bottom: 15px; }
+        .modal-text { color: #ccc; font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px; text-align: left; }
+        .close-icon { position: absolute; top: 15px; right: 20px; color: #888; font-size: 1.5rem; cursor: pointer; }
 
-        /* Estilo da Caixa Cinza do PDF (Bio) */
-        .bio-box {
-            background: var(--dark-grey); color: white; padding: 20px;
-            border-radius: 15px; font-size: 0.9rem; line-height: 1.6;
-            margin-top: 10px; text-align: justify;
+        .btn-confirm { background: var(--brand-gradient); border: none; padding: 15px; border-radius: 50px; color: #FFF; font-weight: 800; text-transform: uppercase; cursor: pointer; width: 100%; margin-bottom: 10px; }
+        .btn-cancel { background: transparent; border: 1px solid #333; padding: 12px; border-radius: 50px; color: #888; cursor: pointer; text-transform: uppercase; width: 100%; }
+
+        .footer { text-align: center; padding: 40px; color: #444; font-size: 0.7rem; }
+
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes appear { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (min-width: 768px) {
+            .hero-person { right: 20%; height: 85%; }
+            .hero-content { top: 20%; left: 15%; width: 40%; }
         }
-
-        /* Estilo da Comparação (Gel x Blindagem) */
-        .compare-box { text-align: left; margin-bottom: 15px; }
-        .compare-title { color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 5px; }
-        .compare-text { font-size: 0.85rem; color: #555; }
-
-        .close-btn {
-            position: absolute; top: 10px; right: 15px; font-size: 24px;
-            cursor: pointer; color: #aaa;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
     </style>
 </head>
 <body>
 
-    <div class="wave-top"></div>
-
-    <header class="header">
-        <div class="profile-container">
-            <img src="foto_perfil.png" alt="Jaquelyne" class="profile-img">
-        </div>
-        <div class="brand-name">Jaquelyne Bianca</div>
+    <!-- HERO FIXO -->
+    <header class="hero">
+        <div class="hero-bg"></div>
         
-        <div class="info-actions">
-            <button class="btn-info" onclick="openModal('modalBio')">✨ Quem sou eu</button>
-            <button class="btn-info" onclick="openModal('modalDuvida')">💅 Gel ou Blindagem?</button>
+        <div class="hero-content">
+            <span class="hero-subtitle">Nail Designer Premium</span>
+            <h1 class="hero-title">Jaquelyne<br><span>Bianca</span></h1>
+            
+            <div style="color: #ccc; font-size: 0.8rem; margin-bottom: 15px;">
+                📍 Serraria - São José<br>
+                ✨ Especialista em Fibra
+            </div>
+
+            <!-- NOVOS BOTÕES DE INFO -->
+            <div class="hero-actions">
+                <div class="btn-mini" onclick="openModal('modalBio')">QUEM SOU EU</div>
+                <div class="btn-mini" onclick="openModal('modalDuvida')">GEL X BLINDAGEM</div>
+            </div>
         </div>
+
+        <img src="hero_person.png" alt="Jaquelyne" class="hero-person">
+        <div class="hero-fade"></div>
     </header>
 
-    <main class="container">
+    <!-- CARROSSEL -->
+    <section class="vitrine-section">
+        <div class="section-header">
+            <h2>Trabalhos</h2>
+        </div>
+        <div class="carousel-track">
+            <div class="carousel-item"><img src="unha1.jpg"></div>
+            <div class="carousel-item"><img src="unha2.jpg"></div>
+            <div class="carousel-item"><img src="unha3.jpg"></div>
+            <div class="carousel-item"><img src="unha4.jpg"></div>
+            <div class="carousel-item"><img src="unha5.jpg"></div>
+            <div class="carousel-item"><img src="unha1.jpg"></div>
+            <div class="carousel-item"><img src="unha2.jpg"></div>
+            <div class="carousel-item"><img src="unha3.jpg"></div>
+            <div class="carousel-item"><img src="unha4.jpg"></div>
+            <div class="carousel-item"><img src="unha5.jpg"></div>
+        </div>
+    </section>
+
+    <!-- AGENDAMENTO -->
+    <section class="booking-section">
+        <div class="section-header">
+            <h2>Agendamento</h2>
+            <p style="color:#888; font-size:0.8rem">1. Selecione o serviço</p>
+        </div>
         
-        <div style="text-align: center;">
-            <h2 class="section-title">Serviços</h2>
-        </div>
+        <div id="serviceList" class="service-list"></div>
 
-        <div id="services-list">
-            <!-- JS Renderiza aqui -->
-        </div>
-
-        <!-- SELEÇÃO DE FORMATO (Escondido até selecionar serviço) -->
-        <div id="shape-section" style="display: none; margin-top: 30px;">
-            <div style="text-align: center;">
-                <h2 class="section-title">Formato</h2>
-                <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Qual formato você prefere?</p>
-            </div>
-            <div class="shapes-grid">
-                <div class="shape-card" onclick="selectShape('Quadrada', this)">
-                    <span class="shape-name">Quadrada</span>
-                </div>
-                <div class="shape-card" onclick="selectShape('Almond', this)">
-                    <span class="shape-name">Almond</span>
-                </div>
-                <div class="shape-card" onclick="selectShape('Bailarina', this)">
-                    <span class="shape-name">Bailarina</span>
-                </div>
-                <div class="shape-card" onclick="selectShape('Stiletto', this)">
-                    <span class="shape-name">Stiletto</span>
-                </div>
+        <!-- SELEÇÃO DE FORMATO (Oculto inicialmente) -->
+        <div id="shapeSection" class="shape-selector">
+            <label style="text-align: center; color: var(--brand);">QUAL FORMATO PREFERE?</label>
+            <div class="shape-grid">
+                <div class="shape-card" onclick="selectShape(this, 'Quadrada')">Quadrada</div>
+                <div class="shape-card" onclick="selectShape(this, 'Almond')">Almond</div>
+                <div class="shape-card" onclick="selectShape(this, 'Bailarina')">Bailarina</div>
+                <div class="shape-card" onclick="selectShape(this, 'Stiletto')">Stiletto</div>
             </div>
         </div>
 
-        <div class="form-section">
-            <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Cinzel', serif;">Agendamento</h3>
+        <div class="form-area">
+            <div>
+                <label>Seu Nome</label>
+                <input type="text" id="cName" placeholder="Digite seu nome">
+            </div>
             
-            <label>Seu Nome</label>
-            <input type="text" id="cName" placeholder="Digite seu nome...">
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <div>
                     <label>Data</label>
-                    <input type="date" id="cDate">
+                    <input type="date" id="cDate" onchange="updateTimeSlots()">
                 </div>
                 <div>
                     <label>Horário</label>
-                    <select id="cTime">
-                        <option value="">--:--</option>
-                        <option value="08:00">08:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="13:00">13:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="17:00">17:00</option>
-                        <option value="19:00">19:00</option>
+                    <select id="cTime" onchange="calcTime()">
+                        <option value="">Selecione...</option>
                     </select>
                 </div>
             </div>
 
-            <button class="btn-submit" onclick="checkAvailability()">Verificar Disponibilidade</button>
+            <div id="timeSummary"></div>
+
+            <button class="btn-submit" onclick="sendZap()">Verificar Disponibilidade</button>
         </div>
+    </section>
 
-        <p style="text-align: center; margin-top: 30px; font-size: 0.7rem; color: #aaa;">
-            Rua Ver. Pedro Medeiros, 454 - Serraria<br>
-            Desenvolvido por <strong>Migre Agora</strong>
-        </p>
+    <div class="footer">
+        © 2026 Studio Jaquelyne Bianca • Tecnologia <span style="color:var(--brand)">Migre Agora</span>
+    </div>
 
-    </main>
+    <!-- MODAL 1: BIO -->
+    <div id="modalBio" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="closeModal('modalBio')">&times;</span>
+            <h3 class="modal-title">Quem sou eu</h3>
+            <p class="modal-text">
+                "Oii, preciosa! Sou Jaquelyne, Nail Designer há mais de 3 anos.<br><br>
+                Meu objetivo é elevar a sua autoestima realçando a sua beleza! Sempre dando o meu melhor para que você possa sentir-se amada como merece."
+            </p>
+        </div>
+    </div>
 
-    <!-- MODAL 1: BIO (TEXTO DA PÁGINA 2) -->
-    <div id="modalBio" class="modal-overlay" onclick="if(event.target === this) closeModal('modalBio')">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modalBio')">&times;</span>
-            <h3 style="font-family: 'Great Vibes'; font-size: 2rem;">Jaquelyne Bianca</h3>
-            
-            <div class="bio-box">
-                "Oii, preciosa! Sou Jaquelyne, Nail Designer há mais de 3 anos. Meu objetivo é elevar a sua autoestima realçando a sua beleza! Sempre dando o meu melhor para que você possa sentir-se amada como merece."
+    <!-- MODAL 2: DUVIDA -->
+    <div id="modalDuvida" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="closeModal('modalDuvida')">&times;</span>
+            <h3 class="modal-title">Qual escolher?</h3>
+            <div style="text-align: left; margin-bottom: 15px;">
+                <strong style="color:var(--brand)">BANHO DE GEL</strong>
+                <p style="font-size:0.8rem; color:#888;">Camada mais espessa. Para unhas que crescem mas são fracas. Proporciona resistência.</p>
+            </div>
+            <div style="text-align: left;">
+                <strong style="color:var(--brand)">BLINDAGEM</strong>
+                <p style="font-size:0.8rem; color:#888;">Camada fina de gel base. Para unhas curtas que descamam. Proporciona proteção.</p>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 2: DÚVIDA (TEXTO DA PÁGINA 5) -->
-    <div id="modalDuvida" class="modal-overlay" onclick="if(event.target === this) closeModal('modalDuvida')">
-        <div class="modal-content" style="text-align: left;">
-            <span class="close-btn" onclick="closeModal('modalDuvida')">&times;</span>
-            <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Cinzel';">Qual escolher?</h3>
-            
-            <div class="compare-box">
-                <div class="compare-title">Banho de Gel</div>
-                <div class="compare-text">• Camada mais espessa de gel construtor.<br>• Para unhas que crescem mas são fracas.<br>• Proporciona resistência.</div>
-            </div>
-            
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-
-            <div class="compare-box">
-                <div class="compare-title">Blindagem</div>
-                <div class="compare-text">• Camada fina de gel base.<br>• Para unhas curtas que descamam.<br>• Proporciona proteção.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 3: AVISO FINAL (REGRAS) -->
+    <!-- MODAL 3: GARANTIA (AVISO) -->
     <div id="modalConfirm" class="modal-overlay">
-        <div class="modal-content">
-            <h3 style="color: var(--gold); margin-bottom: 10px;">✨ Quase lá!</h3>
-            
-            <div style="font-size: 0.85rem; color: #555; margin-bottom: 15px; text-align: left;">
-                <strong>Políticas de Agendamento:</strong><br><br>
-                1. <strong>Sinal:</strong> Trabalhamos com taxa de 50% para reserva.<br>
-                2. <strong>Duração:</strong> Procedimentos levam em média 2h.<br>
-                3. <strong>Acompanhantes:</strong> Por favor, evite trazer crianças ou acompanhantes (produtos químicos/cortantes).
+        <div class="modal-box">
+            <h3 class="modal-title">✨ Confirmação</h3>
+            <p class="modal-text" style="text-align: center;">Para garantir seu horário, trabalhamos com uma taxa de reserva de 50%.</p>
+            <p class="modal-text" style="text-align: center; color: #fff; font-weight: bold;">O envio desta mensagem é sem compromisso.</p>
+            <p class="modal-text" style="font-size:0.8rem; text-align: center;">1. Vamos ver se o horário está livre.<br>2. Se sim, enviamos os dados para travar a agenda.</p>
+            <div class="modal-buttons">
+                <button class="btn-confirm" onclick="confirmZap()">Ir para WhatsApp</button>
+                <button class="btn-cancel" onclick="closeModal('modalConfirm')">Cancelar</button>
             </div>
-
-            <p style="font-size: 0.9rem; font-weight: bold;">Deseja enviar a mensagem para verificar a vaga?</p>
-
-            <button class="btn-submit" onclick="sendWhatsapp()" style="margin-top: 15px;">Sim, chamar no WhatsApp</button>
-            <button onclick="closeModal('modalConfirm')" style="background:none; border:none; color:#999; margin-top:10px; cursor:pointer;">Cancelar</button>
         </div>
     </div>
 
     <script>
-        const WHATSAPP = "5548984662534";
+        const WHATSAPP = "5548984662534"; 
+        const OPEN_HOUR = 8; 
+        const CLOSE_HOUR = 20; 
 
-        // SERVIÇOS DO PDF
         const services = [
-            { id: 1, name: "Aplicação Fibra de Vidro", price: 170 },
-            { id: 2, name: "Manutenção", price: 130 },
-            { id: 3, name: "Banho de Gel", price: 85 },
-            { id: 4, name: "Blindagem", price: 70 },
-            { id: 5, name: "Esmaltação em Gel", price: 60 },
-            { id: 6, name: "Remoção", price: 60 }
+            { id: 1, name: "Aplicação Fibra", price: 170, time: 180, tStr: "3h" },
+            { id: 2, name: "Manutenção", price: 130, time: 120, tStr: "2h" },
+            { id: 3, name: "Banho de Gel", price: 85, time: 120, tStr: "2h" },
+            { id: 4, name: "Blindagem", price: 70, time: 90, tStr: "1h30" },
+            { id: 5, name: "Esmaltação em Gel", price: 60, time: 90, tStr: "1h30" },
+            { id: 6, name: "Remoção", price: 60, time: 40, tStr: "40min" }
         ];
 
-        let selectedService = null;
-        let selectedShape = null;
+        let selServ = null;
+        let selShape = null;
 
-        // Renderiza serviços
-        const list = document.getElementById('services-list');
-        list.innerHTML = services.map(s => `
-            <div class="service-card" onclick="selectService(this, ${s.id})">
-                <span class="s-name">${s.name}</span>
-                <span class="s-price">R$ ${s.price}</span>
-            </div>
-        `).join('');
+        window.onload = () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('cDate').min = today;
+            
+            const list = document.getElementById('serviceList');
+            list.innerHTML = services.map(s => `
+                <div class="service-card" onclick="select(this, ${s.id})">
+                    <div class="s-info">
+                        <h3>${s.name}</h3>
+                        <p>⏱ ${s.tStr}</p>
+                    </div>
+                    <div class="s-price">R$ ${s.price}</div>
+                </div>
+            `).join('');
+        };
 
-        function selectService(el, id) {
+        function select(el, id) {
             document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            selectedService = services.find(s => s.id === id);
+            selServ = services.find(s => s.id === id);
             
-            // Mostra seleção de formato se for alongamento ou manutenção
-            const shapeSection = document.getElementById('shape-section');
-            if(selectedService.name.includes("Fibra") || selectedService.name.includes("Manutenção")) {
-                shapeSection.style.display = 'block';
+            // Lógica para mostrar Formatos apenas se for alongamento/manutenção
+            const shapeDiv = document.getElementById('shapeSection');
+            if(selServ.name.includes("Fibra") || selServ.name.includes("Manutenção")) {
+                shapeDiv.style.display = 'block';
             } else {
-                shapeSection.style.display = 'none';
-                selectedShape = "Natural"; // Padrão
+                shapeDiv.style.display = 'none';
+                selShape = null; // Reseta se trocar de serviço
+            }
+
+            updateTimeSlots(); 
+            calcTime();
+        }
+
+        function selectShape(el, shapeName) {
+            document.querySelectorAll('.shape-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selShape = shapeName;
+        }
+
+        function updateTimeSlots() {
+            const dateVal = document.getElementById('cDate').value;
+            const timeSelect = document.getElementById('cTime');
+            timeSelect.innerHTML = '<option value="">Selecione...</option>';
+
+            if (!selServ || !dateVal) return;
+
+            const selectedDate = new Date(dateVal + 'T00:00:00');
+            const now = new Date();
+            const isToday = selectedDate.toDateString() === now.toDateString();
+            const currentHour = now.getHours();
+            const currentMin = now.getMinutes();
+
+            for (let h = OPEN_HOUR; h <= CLOSE_HOUR; h++) {
+                for (let m = 0; m < 60; m += 30) {
+                    if (isToday) {
+                        if (h < currentHour) continue;
+                        if (h === currentHour && m <= currentMin) continue;
+                    }
+                    const timeStr = h.toString().padStart(2, '0') + ':' + m.toString().padStart(2, '0');
+                    const opt = document.createElement('option');
+                    opt.value = timeStr;
+                    opt.innerText = timeStr;
+                    timeSelect.appendChild(opt);
+                }
             }
         }
 
-        function selectShape(shape, el) {
-            document.querySelectorAll('.shape-card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            selectedShape = shape;
+        function calcTime() {
+            const timeVal = document.getElementById('cTime').value;
+            const summary = document.getElementById('timeSummary');
+            
+            if(!selServ || !timeVal) { summary.style.display='none'; return; }
+
+            const [h, m] = timeVal.split(':').map(Number);
+            const end = new Date();
+            end.setHours(h);
+            end.setMinutes(m + selServ.time);
+            
+            const endStr = end.getHours().toString().padStart(2,'0') + ':' + end.getMinutes().toString().padStart(2,'0');
+            
+            summary.style.display = 'block';
+            summary.innerHTML = `✨ Serviço: <strong>${selServ.name}</strong><br>🕒 Previsão: <strong>${timeVal}</strong> até às <strong>${endStr}</strong>`;
         }
 
-        function checkAvailability() {
+        function sendZap() {
             const n = document.getElementById('cName').value;
             const d = document.getElementById('cDate').value;
             const t = document.getElementById('cTime').value;
-
-            if(!selectedService || !n || !d || !t) {
-                alert("Por favor, preencha todas as informações ✨");
-                return;
-            }
-            if(document.getElementById('shape-section').style.display === 'block' && !selectedShape) {
-                alert("Por favor, escolha um formato de unha ✨");
-                return;
+            
+            if(!selServ || !n || !d || !t) { alert('Preencha todas as informações! ✨'); return; }
+            
+            // Valida se escolheu formato quando necessário
+            if(document.getElementById('shapeSection').style.display === 'block' && !selShape) {
+                alert('Por favor, escolha um formato de unha! 💅'); return;
             }
 
             openModal('modalConfirm');
         }
 
-        function sendWhatsapp() {
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function confirmZap() {
             const n = document.getElementById('cName').value;
             const d = document.getElementById('cDate').value;
             const t = document.getElementById('cTime').value;
             
-            const dateStr = new Date(d).toLocaleDateString('pt-BR', {timeZone:'UTC'});
-            
-            let msg = `Olá Jaquelyne! 🧡\nMe chamo *${n}*.\n\nGostaria de agendar:\n✨ *${selectedService.name}* (R$ ${selectedService.price})\n`;
-            
-            if(selectedShape && selectedShape !== "Natural") {
-                msg += `💅 Formato desejado: *${selectedShape}*\n`;
-            }
-            
-            msg += `📅 Data: *${dateStr}*\n⏰ Horário: *${t}*\n\nLi as políticas e estou ciente do sinal. Tem vaga?`;
+            const dStr = new Date(d + 'T00:00:00').toLocaleDateString('pt-BR');
+            const [h, m] = t.split(':').map(Number);
+            const end = new Date();
+            end.setHours(h);
+            end.setMinutes(m + selServ.time);
+            const endStr = end.getHours().toString().padStart(2,'0') + ':' + end.getMinutes().toString().padStart(2,'0');
 
+            let msg = `Olá Jaquelyne! 🧡\nMe chamo *${n}*.\n\nGostaria de agendar:\n✨ *${selServ.name}* (R$ ${selServ.price})\n`;
+            
+            if(selShape) msg += `💅 Formato: *${selShape}*\n`;
+            
+            msg += `📅 Data: *${dStr}*\n⏰ Horário: *${t}* (Até aprox. ${endStr})\n\nEstou ciente da taxa. Tem vaga?`;
+            
             window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`);
             closeModal('modalConfirm');
         }
-
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
     </script>
 </body>
 </html>
